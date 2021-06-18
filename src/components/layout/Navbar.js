@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import AlertContext from '../../context/alert/alertContext';
 
 const Navbar = ({ icon, title }) => {
+	const alertContext = useContext(AlertContext);
 	return (
-		<nav className='navbar bg-primary'>
-			<h1>
+		<nav className='navbar bg-dark'>
+			<h1
+				onMouseEnter={() =>
+					alertContext.setAlert(
+						'Click to view code on Github',
+						'light',
+						`${icon}`
+					)
+				}
+			>
 				<i className={icon} />
-				{title}
+				<a
+					href='https://github.com/JoeAdames/ghubfinder'
+					target='_blank'
+					rel='noreferrer'
+				>
+					{title}
+				</a>
 			</h1>
 			<ul>
 				<li>
